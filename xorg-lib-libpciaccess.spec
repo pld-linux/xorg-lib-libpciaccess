@@ -1,6 +1,6 @@
 %define	snap	20070612
-Summary:	libpciaccess library
-Summary(pl.UTF-8):	Biblioteka libpciaccess
+Summary:	libpciaccess library to access PCI bus and devices
+Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
 Version:	0.8.0
 Release:	1
@@ -13,14 +13,16 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 1:0.19
+# /etc/pci.ids
 Requires:	pciutils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-libpciaccess library.
+libpciaccess library provides generic access to the PCI bus and
+devices.
 
 %description -l pl.UTF-8
-Biblioteka pciaccess.
+Biblioteka pciaccess daje ogólny dostep do szyny i urządzeń PCI.
 
 %package devel
 Summary:	Header files for pciaccess library
