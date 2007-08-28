@@ -1,13 +1,12 @@
-%define	snap	20070612
 Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
-Version:	0.8.0
+Version:	0.9.1
 Release:	1
 License:	MIT
 Group:		X11/Libraries
-Source0:	libpciaccess-%{snap}.tar.gz
-# Source0-md5:	144304074a1d00842aaedf26600e5e70
+Source0:	http://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.bz2
+# Source0-md5:	4b2df0a840917d1ced91973d7626c25d
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -59,7 +58,7 @@ Biblioteka pciaccess.
 Pakiet zawiera statyczną bibliotekę pciaccess.
 
 %prep
-%setup -q -n libpciaccess
+%setup -q -n libpciaccess-%{version}
 
 %build
 %{__libtoolize}
