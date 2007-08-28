@@ -30,14 +30,10 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-pciaccess library.
-
 This package contains the header files needed to develop programs that
-use pciaccess.
+use pciaccess library.
 
 %description devel -l pl.UTF-8
-Biblioteka pciaccess.
-
 Pakiet zawiera pliki nagłówkowe niezbędne do kompilowania programów
 używających biblioteki pciaccess.
 
@@ -48,13 +44,9 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-pciaccess library.
-
 This package contains the static pciaccess library.
 
 %description static -l pl.UTF-8
-Biblioteka pciaccess.
-
 Pakiet zawiera statyczną bibliotekę pciaccess.
 
 %prep
@@ -85,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog
+%doc AUTHORS COPYING ChangeLog
 %attr(755,root,root) %{_libdir}/libpciaccess.so.*.*.*
 
 %files devel
@@ -93,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpciaccess.so
 %{_libdir}/libpciaccess.la
 %{_pkgconfigdir}/pciaccess.pc
-%{_includedir}/*.h
+%{_includedir}/pciaccess.h
 
 %files static
 %defattr(644,root,root,755)
