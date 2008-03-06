@@ -12,6 +12,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	xorg-util-util-macros
 # /etc/pci.ids
 Requires:	pciutils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog
 %attr(755,root,root) %{_libdir}/libpciaccess.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpciaccess.so.0
 
 %files devel
 %defattr(644,root,root,755)
