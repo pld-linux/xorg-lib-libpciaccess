@@ -1,12 +1,12 @@
 Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
-Version:	0.10.7
+Version:	0.10.8
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.bz2
-# Source0-md5:	60660d66962d30603023a06ed17d42ba
+# Source0-md5:	b48d257b63dd5bcc9cea400d1b3a5242
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
