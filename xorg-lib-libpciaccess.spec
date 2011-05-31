@@ -2,7 +2,7 @@ Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
 Version:	0.12.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.bz2
@@ -70,6 +70,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpciaccess.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -85,7 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpciaccess.so
-%{_libdir}/libpciaccess.la
 %{_pkgconfigdir}/pciaccess.pc
 %{_includedir}/pciaccess.h
 
