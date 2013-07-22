@@ -1,18 +1,19 @@
 Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
-Version:	0.13.1
-Release:	2
+Version:	0.13.2
+Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.bz2
-# Source0-md5:	399a419ac6a54f0fc07c69c9bdf452dc
+# Source0-md5:	b7c0d3afce14eedca57312a3141ec13a
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	xorg-util-util-macros >= 1.8
+BuildRequires:	zlib-devel
 # pci.ids
 Requires:	hwdata >= 0.243-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -60,7 +61,8 @@ Pakiet zawiera statyczną bibliotekę pciaccess.
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-pciids-path=/lib/hwdata
+	--with-pciids-path=/lib/hwdata \
+	--with-zlib
 %{__make}
 
 %install
