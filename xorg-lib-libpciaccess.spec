@@ -1,18 +1,20 @@
 Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
-Version:	0.16
+Version:	0.17
 Release:	1
 License:	MIT
 Group:		X11/Libraries
-Source0:	https://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.bz2
-# Source0-md5:	b34e2cbdd6aa8f9cc3fa613fd401a6d6
+Source0:	https://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.xz
+# Source0-md5:	1466cf950c914ad2db1dbb76c9a724db
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-util-util-macros >= 1.8
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 # pci.ids
 Requires:	hwdata >= 0.243-2
@@ -30,6 +32,7 @@ Summary:	Header files for pciaccess library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki pciaccess
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	zlib-devel
 
 %description devel
 This package contains the header files needed to develop programs that
@@ -69,8 +72,7 @@ Pakiet zawiera statyczną bibliotekę pciaccess.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libpciaccess.la
 
