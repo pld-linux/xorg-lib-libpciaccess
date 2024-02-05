@@ -1,19 +1,22 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	libpciaccess library to access PCI bus and devices
 Summary(pl.UTF-8):	Biblioteka libpciaccess do dostępu do szyny i urządzeń PCI
 Name:		xorg-lib-libpciaccess
-Version:	0.17
+Version:	0.18
 Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	https://xorg.freedesktop.org/archive/individual/lib/libpciaccess-%{version}.tar.xz
-# Source0-md5:	1466cf950c914ad2db1dbb76c9a724db
+# Source0-md5:	54f48367e37666f9e0f12571d1ee3620
 URL:		https://xorg.freedesktop.org/
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	meson >= 0.48.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	xorg-util-util-macros >= 1.8
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 # pci.ids
@@ -57,24 +60,21 @@ Pakiet zawiera statyczną bibliotekę pciaccess.
 %prep
 %setup -q -n libpciaccess-%{version}
 
+%if %{with static_libs}
+%{__sed} -i -e '/^libpciaccess = / s/shared_library/library/' src/meson.build
+%endif
+
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--with-pciids-path=/lib/hwdata \
-	--with-zlib
-%{__make}
+%meson build \
+	-Dpci-ids=/lib/hwdata \
+	-Dzlib=enabled
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpciaccess.la
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README.md
+%doc AUTHORS COPYING README.md
 %attr(755,root,root) %{_libdir}/libpciaccess.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpciaccess.so.0
 
@@ -94,6 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/pciaccess.pc
 %{_includedir}/pciaccess.h
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpciaccess.a
+%endif
