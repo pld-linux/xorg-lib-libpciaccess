@@ -15,6 +15,7 @@ URL:		https://xorg.freedesktop.org/
 BuildRequires:	meson >= 0.48.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.19
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
